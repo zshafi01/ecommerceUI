@@ -1,0 +1,37 @@
+<div class="container">
+    <form class="example-form" #productCatagoryForm="ngForm" (ngSubmit)="onSubmit()">
+        <h1>{{productCatagoryForm.value | json}}</h1>
+        <div>
+            <mat-form-field class="input-full-width">
+                <mat-label>Catagory Name</mat-label>
+                <input matInput placeholder="Catagory Name" name="catagoryName" #catagoryName="ngModel" maxlength="45" minlength="3" [(ngModel)]="productCategory.categoryName" required>
+                <span class="text-danger" *ngIf="catagoryName.value?.length == 45">max 45 charactor are allowed</span>
+                <span class="text-danger" *ngIf="catagoryName.value?.length < 3 && catagoryName.touched" >min 3 charactor are allowed &nbsp; </span>
+                <span class="text-danger" *ngIf="catagoryName.hasError('required') && catagoryName.touched" >catagory name is required</span>
+
+
+
+                <mat-hint>{{catagoryName.value?.length || 0}}/45 Ex electronics,books...</mat-hint>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-button color="primary" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- Reactiveform -->
+<!-- <div class="container">
+    <form class="example-form" [formGroup]="productCatagoryForm" (ngSubmit)="onSubmit(productCatagoryForm)">
+        <div>
+            <mat-form-field class="input-full-width">
+                <mat-label>Catagory Name</mat-label>
+                <input matInput placeholder="Catagory Name" name="categoryName" formControlName="categoryName">
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-button color="primary" type="submit">Submit</button>
+        </div>
+    </form>
+</div> -->

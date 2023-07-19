@@ -1,0 +1,40 @@
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Created On</th>
+
+            <th scope="col">Category</th>
+            <th scope="col">ProductImageList</th>
+           
+          </tr>
+        </thead>
+        <tbody  *ngIf="products && products.length>0">
+          <tr *ngFor="let product of products">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.createdOn|date}}</td>
+            
+            <td *ngFor="let category of product.categories">{{category.categoryName}}</td>
+            <td *ngFor="let image of product.productImageList"><img [src]="image.url" alt="" width="100"></td>
+
+            <!-- <td>{{product.productImageList['url'][0]}}</td> -->
+          </tr>
+       
+         
+          
+        </tbody>
+      </table>
+      <div *ngIf="products == null || products.length ==0 " >
+        <h2 >
+            No Content
+        </h2>
+      </div>

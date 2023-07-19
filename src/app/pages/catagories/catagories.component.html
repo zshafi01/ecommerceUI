@@ -1,0 +1,33 @@
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Created On</th>
+        <th scope="col">Actions</th>
+       
+      </tr>
+    </thead>
+    <tbody *ngIf="catagories && catagories.length>0">
+        
+      <tr *ngFor="let category of catagories">
+        <td>{{category.id}}</td>
+        <td>{{category.categoryName}}</td>
+        <td>{{category.createdOn|date}}</td>
+        
+        <td>
+            <div><a class="btn btn-block text-nowrap" ><mat-icon>visibility</mat-icon>
+           view </a></div>
+        </td>
+      </tr>
+           
+    </tbody>
+    
+  </table>
+  <div *ngIf="catagories == null || catagories.length ==0 " style="margin: 0 auto;">
+    <h2 >
+        No Content
+    </h2>
+</div>
+  </div>
