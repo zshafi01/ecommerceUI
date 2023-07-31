@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="col-lg-6" style="margin: 0 auto;">
+    <form class="example-form" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="search-input">
+          <mat-label>Search </mat-label>
+          <input type="text" matInput placeholder="Search Here ..." name= "keyword" id="keyword" (input)="onSearchChange($event)">
+           <mat-icon matSuffix>search</mat-icon>
+          <mat-hint>Search by name, description or price</mat-hint>
+          
+        </mat-form-field>
+      </form>
+      </div>
+      
+    <div class="row">
+        <div class="card" style="width:350px;" *ngFor="let product of products">
+            <div *ngFor="let image of product.productImageList">
+                <img [src]="image.url" class="img-fluid rounded-start" alt="..." width="200">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title mt-3 style='strong'">{{product.name| titlecase}}</h2>
+                <p class="card-text">{{product.description.length>60?(product.description|slice:0:60) + '...'
+                    :(product.description)}}</p>
+                <p class="card-text" id="price"> {{product.price | currency}}</p>
+                <p class="card-text mb-3"><small class="text-body-secondary">Posted on:
+                        {{product.createdOn|date}}</small></p>
+            </div>
+            <a [routerLink]="'/product/'+ product.id" class="btn btn-primary mb-3 ">View Detail </a>
+        </div>
+    </div>
+    <div class="paginator d-flex align-items-center justify-content-center mt-5">
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPagechanged($event)">
+        </mat-paginator>
+        
+    </div>
+
+
+</div>

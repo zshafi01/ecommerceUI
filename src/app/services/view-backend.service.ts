@@ -22,9 +22,23 @@ export class ViewBAckendService {
     public getAllCategory(): Observable<ProductCategory[]>{
       return this.httpClient.get<ProductCategory[]>(this.publicUrl+'/categories')
     }
-    public getAllProducts(): Observable<any>{
-      return this.httpClient.get<any>(this.publicUrl+'/products?page=0&size=5')
+    public getAllCategoriesPageable(pageNo:number,pageSize:number, sort:string): Observable<any>{
+      return this.httpClient.get<any>(this.adminUrl+'/categories?page='+ pageNo + "&size=" + pageSize + "&sort=" + sort)
     }
-
+    public getAllProducts(pageNo:number,pageSize:number, sort:string): Observable<any>{
+      return this.httpClient.get<any>(this.publicUrl+'/products?page=' + pageNo + "&size=" + pageSize + "&sort=" + sort);
+    }
+    public getCategoryById(id:number){
+      return this.httpClient.get(this.publicUrl + '/category/' + id)
+    }
+    public getProductById(id:number){
+      return this.httpClient.get(this.publicUrl + '/product/' +id)
+    }
+    public searchProductByKeyWord(keyword:string, pageNo:number,pageSize:number): Observable<any>{
+      return this.httpClient.get(this.publicUrl + '/products?keyword=' + keyword + '&page=' + pageNo + "&size=" + pageSize );
+    }
+    public searchCategoryByKeyWord(keyword:string, pageNo:number,pageSize:number): Observable<any>{
+      return this.httpClient.get(this.adminUrl + '/categories?keyword=' + keyword + '&page=' + pageNo + "&size=" + pageSize );
+    }
     
 }

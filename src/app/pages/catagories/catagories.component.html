@@ -1,33 +1,56 @@
 <div class="container">
-<table class="table">
+  <div class="col-lg-6" style="margin: 0 auto;">
+    <form class="example-form" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="search-input">
+          <mat-label>Search </mat-label>
+          <input type="text" matInput placeholder="Search Here ..." name= "keyword" id="keyword" (input)="onSearchChange($event)">
+           <mat-icon matSuffix>search</mat-icon>
+          <mat-hint>Search by category name</mat-hint>
+          
+        </mat-form-field>
+      </form>
+      </div>
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Category Name</th>
         <th scope="col">Created On</th>
         <th scope="col">Actions</th>
-       
+
       </tr>
     </thead>
     <tbody *ngIf="catagories && catagories.length>0">
-        
+
       <tr *ngFor="let category of catagories">
         <td>{{category.id}}</td>
         <td>{{category.categoryName}}</td>
         <td>{{category.createdOn|date}}</td>
-        
+
         <td>
-            <div><a class="btn btn-block text-nowrap" ><mat-icon>visibility</mat-icon>
-           view </a></div>
+          <div>
+            <!-- <a class="btn btn-block text-nowrap" ><mat-icon>visibility</mat-icon>
+          view </a> -->
+            <a [routerLink]="'/catagory/'+ category.id" class="btn btn-block text-nowrap"> <i class="fa fa-eye"
+                aria-hidden="true"></i> view</a>
+
+          </div>
         </td>
       </tr>
-           
+
     </tbody>
-    
+
   </table>
   <div *ngIf="catagories == null || catagories.length ==0 " style="margin: 0 auto;">
-    <h2 >
-        No Content
+    <h2>
+      No Content
     </h2>
-</div>
   </div>
+
+  <div class="paginator d-flex align-items-center justify-content-center mt-5">
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="onPagechanged($event)">
+    </mat-paginator>
+
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+<div class="d-flex align-items-center justify-content-center mt-5">
+    <div class="row g-0" id="card">
+      <div class="col-md-4" *ngFor="let image of product.productImageList">
+        <img [src]="image.url" class="img-fluid rounded-start" alt="..." width="300">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title mt-3 style='strong'">{{product.name| uppercase}}</h2>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text" id="price"> {{product.price | currency}}</p>
+          <p class="card-text" >quntity: {{product.quantity}}</p>
+          <!-- <p class="card-text">{{product.categry}}</p> -->
+          <p class="card-text mb-3"><small class="text-body-secondary">{{product.createdOn|date}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+

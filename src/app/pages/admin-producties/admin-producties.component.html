@@ -1,16 +1,27 @@
 <div class="container">
+  <div class="col-lg-6 float-end">
+    <form class="example-form" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="search-input">
+          <mat-label>Search </mat-label>
+          <input type="text" matInput placeholder="Search Here ..." name= "keyword" id="keyword" (input)="onSearchChange($event)">
+           <mat-icon matSuffix>search</mat-icon>
+          <mat-hint>Search by name, description or price</mat-hint>
+          
+        </mat-form-field>
+      </form>
+      </div>
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Created On</th>
-
-            <th scope="col">Category</th>
-            <th scope="col">ProductImageList</th>
+            <th scope="col" class="text-nowrap">Id</th>
+            <th scope="col" class="text-nowrap">Product Name</th>
+            <th scope="col" class="text-nowrap">Description</th>
+            <th scope="col" class="text-nowrap">Price</th>
+            <th scope="col" class="text-nowrap">Quantity</th>
+            <th scope="col" class="text-nowrap">Created On</th>
+            <th scope="col"  class="text-nowrap">Category</th>
+            <th scope="col" class="text-nowrap">ProductImageList</th>
+            <th scope="col"  class="text-nowrap">Actions</th>
            
           </tr>
         </thead>
@@ -21,18 +32,33 @@
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>
             <td>{{product.quantity}}</td>
-            <td>{{product.createdOn|date}}</td>
+            <td  class="text-nowrap">{{product.createdOn|date}}</td>
             
-            <td *ngFor="let category of product.categories">{{category.categoryName}}</td>
+            <td *ngFor="let category of product.categories"><span *ngIf="category">{{category.categoryName}}</span></td>
+            <td *ngIf="product.categories.length== 0 || !product.categories"><span> Category is not regestor</span></td>
             <td *ngFor="let image of product.productImageList"><img [src]="image.url" alt="" width="100"></td>
 
             <!-- <td>{{product.productImageList['url'][0]}}</td> -->
+            <td>
+              <div>
+                 
+            <a [routerLink]="'/product/'+ product.id" class="btn btn-block text-nowrap" > <i class="fa fa-eye" aria-hidden="true"></i> view</a>
+            <a (click)="onDelete(product.id)" class="btn btn-block text-nowrap" > <i class="fa fa-trash" aria-hidden="true"></i> delete</a>
+
+                      
+          </div>
+          </td>
           </tr>
        
          
           
         </tbody>
       </table>
+      <div class="paginator d-flex align-items-center justify-content-center mt-5">
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPagechanged($event)">
+        </mat-paginator>
+        
+    </div>
       <div *ngIf="products == null || products.length ==0 " >
         <h2 >
             No Content

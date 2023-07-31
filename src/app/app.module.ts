@@ -20,6 +20,12 @@ import { CommonModule } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import { AdminProductiesComponent } from './pages/admin-producties/admin-producties.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ProductsComponent } from './pages/products/products.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -29,7 +35,11 @@ import { MatIconModule } from '@angular/material/icon';
     ProductImageRegistrationComponent,
     ProductCategoryRegistrationComponent,
     CatagoriesComponent,
-    AdminProductiesComponent
+    AdminProductiesComponent,
+    CategoryDetailComponent,
+    PagenotfoundComponent,
+    ProductDetailComponent,
+    ProductsComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +53,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
+    MatPaginatorModule,
     
   ],
   providers: [

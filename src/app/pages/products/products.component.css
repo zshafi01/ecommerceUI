@@ -1,0 +1,29 @@
+.card{
+    margin: 10px;
+    border-radius: 15px;
+}
+#price{
+    color:green;
+    font-weight: bolder;
+}
+.btn-primary{
+    border-radius: 25px;
+}
+.search-input{
+    width: 100%;
+}  
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 25px !important;
+    border: none;
+    border-left: none;
+    padding-left: 20px !important;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #56A79A;
+}
+::ng-deep .mat-form-field-underline {
+
+    display: none;
+
+}

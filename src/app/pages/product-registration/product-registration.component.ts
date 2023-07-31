@@ -80,7 +80,7 @@ getAllCatagory(){
     let productImageList: ProductImage[]=[];
     productImageList.push(imageUrls);
     this.product.productImageList = productImageList;
-    debugger
+    
     this.registrationProduct.registorProduct(this.product).subscribe({
       next:(data)=> {
         console.log("save data", data)
